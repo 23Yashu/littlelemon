@@ -1,7 +1,8 @@
+import restaurant from '../img/restaurant.jpg';
 function Footer() {
     return (
         <footer>
-            <img src="./img/restaurant.jpg" alt="Little Lemon Restaurant" />
+            <img src={restaurant} alt="Little Lemon Restaurant" />
             <h3>Little Lemon</h3>
             <ul>
                 <li><a href="#about">About</a></li>

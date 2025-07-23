@@ -5,6 +5,7 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 
 function App() {
+  return (
   <>
     <Header>
       <Nav/>
@@ -12,6 +13,7 @@ function App() {
     <Main/>
     <Footer/>
   </>
+  );
 }
 
 export default App;
