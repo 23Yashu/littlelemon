@@ -1,5 +1,6 @@
 import logo from '../img/Logo.svg';
 import restaurant from '../img/restaurant.jpg';
+import Nav from './Nav';
 function Header() {
     return (
         <header>
@@ -10,6 +11,7 @@ Mediterranean restaurant, focused on traditional recipes served with a modern tw
             <meta name="og:description" content="We are a family owned
 Mediterranean restaurant, focused on traditional recipes served with a modern twist. "/>
             <meta name="og:image" content={restaurant}/>
+            <Nav />
         </header>
     )
 }
