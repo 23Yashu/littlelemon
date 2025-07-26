@@ -1,37 +1,128 @@
+import { useState, useEffect } from 'react';
 import restaurant from '../img/restaurant.jpg';
+import { FaFacebook, FaInstagram, FaTwitter, FaChevronDown } from 'react-icons/fa';
 function Footer() {
+    const [isMobile, setIsMobile] = useState(false);
+    const [openSection, setOpenSection] = useState(null);
+    const date = new Date();
+    const year = date.getFullYear();
+    const author = "Yashasvi Vashistha";
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const toggleSection = (section) => {
+        setOpenSection(prev => prev === section ? null : section);
+    }
     return (
         <footer>
-            <img src={restaurant} alt="Little Lemon Restaurant" />
-            <h3>Little Lemon</h3>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <h3>Contact</h3>
-            <ul>
-                <li><p>You may also want to visit us:<br/>
-                </p>Little Lemon<br/>331 E Chicago<br/>
-                LaSalle Street Chicago,<br/>Illinois 60602
-                <br/>USA</li>
-                <li><p>jim@rock.com</p></li>
-                <li><p>(311) 555-2368</p></li>
-                <li><p>littlemon@bookings.com</p></li>
-            </ul>
-            <h3>Social Media</h3>
-            <ul>
-                <li><a href="https://www.facebook.com">
-                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 510.125"><path fill="#fff" fill-rule="nonzero" d="M512 256C512 114.615 397.385 0 256 0S0 114.615 0 256c0 120.059 82.652 220.797 194.157 248.461V334.229h-52.79V256h52.79v-33.709c0-87.134 39.432-127.521 124.977-127.521 16.218 0 44.202 3.18 55.651 6.36v70.916c-6.042-.635-16.537-.954-29.575-.954-41.977 0-58.196 15.901-58.196 57.241V256h83.619l-14.365 78.229h-69.254v175.896C413.771 494.815 512 386.885 512 256z"/></svg>
-                </a></li>
-                <li><a href="https://www.instagram.com">
-                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 510.125"><path fill="#fff" fill-rule="nonzero" d="M512 256C512 114.615 397.385 0 256 0S0 114.615 0 256c0 120.059 82.652 220.797 194.157 248.461V334.229h-52.79V256h52.79v-33.709c0-87.134 39.432-127.521 124.977-127.521 16.218 0 44.202 3.18 55.651 6.36v70.916c-6.042-.635-16.537-.954-29.575-.954-41.977 0-58.196 15.901-58.196 57.241V256h83.619l-14.365 78.229h-69.254v175.896C413.771 494.815 512 386.885 512 256z"/></svg>
-                </a></li>
-                <li><a href="https://www.twittercom">
-                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 510.125"><path fill="#fff" fill-rule="nonzero" d="M512 256C512 114.615 397.385 0 256 0S0 114.615 0 256c0 120.059 82.652 220.797 194.157 248.461V334.229h-52.79V256h52.79v-33.709c0-87.134 39.432-127.521 124.977-127.521 16.218 0 44.202 3.18 55.651 6.36v70.916c-6.042-.635-16.537-.954-29.575-.954-41.977 0-58.196 15.901-58.196 57.241V256h83.619l-14.365 78.229h-69.254v175.896C413.771 494.815 512 386.885 512 256z"/></svg>
-                </a></li>
-            </ul>
+            <div className='links'>
+                <div className='footer-logo'>
+                    <img src={restaurant} alt="Little Lemon Restaurant" />
+                </div>
+
+                {/* Website Links */}
+                <div className='website-links'>
+                    {isMobile ? (
+                        <>
+                            <div className="footer-toggle" onClick={() => toggleSection("links")}>
+                                <h3>Little Lemon</h3>
+                                <FaChevronDown className={openSection === "links" ? "rotated" : ""} />
+                            </div>
+                            <ul className={`footer-links ${openSection === "links" ? "open" : ""}`}>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#menu">Menu</a></li>
+                                <li><a href="#testimonials">Testimonials</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </>
+                    ) : (
+                        <>
+                            <h3>Little Lemon</h3>
+                            <ul className='footer-links'>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#menu">Menu</a></li>
+                                <li><a href="#testimonials">Testimonials</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </>
+                    )}
+                </div>
+
+                {/* Contact Info */}
+                <div className='contact-info'>
+                    {isMobile ? (
+                        <>
+                            <div className="footer-toggle" onClick={() => toggleSection("contact")}>
+                                <h3>Contact</h3>
+                                <FaChevronDown className={openSection === "contact" ? "rotated" : ""} />
+                            </div>
+                            <ul className={`footer-links ${openSection === "contact" ? "open" : ""}`}>
+                                <li><p>You may also want to visit us:</p>
+                                    <span>Little Lemon<br />
+                                        331 E Chicago<br />
+                                        LaSalle Street Chicago,<br />
+                                        Illinois 60602<br />
+                                        USA</span>
+                                </li>
+                                <li><p>jim@rock.com</p></li>
+                                <li><p>(311) 555-2368</p></li>
+                                <li><p>littlemon@bookings.com</p></li>
+                            </ul>
+                        </>
+                    ) : (
+                        <>
+                            <h3>Contact</h3>
+                            <ul className='footer-links'>
+                                <li><p>You may also want to visit us:</p>
+                                    <span>Little Lemon<br />
+                                        331 E Chicago<br />
+                                        LaSalle Street Chicago,<br />
+                                        Illinois 60602<br />
+                                        USA</span>
+                                </li>
+                                <li><p>jim@rock.com</p></li>
+                                <li><p>(311) 555-2368</p></li>
+                                <li><p>littlemon@bookings.com</p></li>
+                            </ul>
+                        </>
+                    )}
+                </div>
+
+                {/* Social Media */}
+                <div className='social-media'>
+                    {isMobile ? (
+                        <>
+                            <div className="footer-toggle" onClick={() => toggleSection("social")}>
+                                <h3>Social Media</h3>
+                                <FaChevronDown className={openSection === "social" ? "rotated" : ""} />
+                            </div>
+                            <ul className={`footer-links ${openSection === "social" ? "open" : ""}`}>
+                                <li><a href="https://www.facebook.com"><FaFacebook className='social-icons' /></a></li>
+                                <li><a href="https://www.instagram.com"><FaInstagram className='social-icons' /></a></li>
+                                <li><a href="https://www.twitter.com"><FaTwitter className='social-icons' /></a></li>
+                            </ul>
+                        </>
+                    ) : (
+                        <>
+                            <h3>Social Media</h3>
+                            <ul className='footer-links'>
+                                <li><a href="https://www.facebook.com"><FaFacebook className='social-icons' /></a></li>
+                                <li><a href="https://www.instagram.com"><FaInstagram className='social-icons' /></a></li>
+                                <li><a href="https://www.twitter.com"><FaTwitter className='social-icons' /></a></li>
+                            </ul>
+                        </>
+                    )}
+                </div>
+            </div>
+            <div className='copyright'>
+                <p>&copy; {year} Little Lemon by
+                    <a href='https://www.linkedin.com/in/yashasvi-vashistha'> {author}</a>
+                </p>
+            </div>
         </footer>
     )
 }
