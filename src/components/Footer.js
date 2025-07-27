@@ -8,7 +8,7 @@ function Footer() {
     const year = date.getFullYear();
     const author = "Yashasvi Vashistha";
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        const handleResize = () => setIsMobile(window.innerWidth <= 1024);
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
@@ -120,7 +120,8 @@ function Footer() {
             </div>
             <div className='copyright'>
                 <p>&copy; {year} Little Lemon by
-                    <a href='https://www.linkedin.com/in/yashasvi-vashistha'> {author}</a>
+                    <a href='https://www.linkedin.com/in/yashasvi-vashistha'> {author}.</a>
+                     &nbsp;All Rights Reserved.
                 </p>
             </div>
         </footer>
