@@ -1,6 +1,6 @@
 import restaurantfood from '../img/restauranfood.jpg';
 
-function Hero() {
+function Hero({onReserveClick}) {
   return (
     <section className='hero' id='home'>
       <div className="hero-text">
@@ -9,7 +9,7 @@ function Hero() {
         <div className='hero-text-content'>
           <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
         </div>
-        <button className='reserve-button'>Reserve a Table</button>
+        <button className='reserve-button' onClick={onReserveClick}>Reserve a Table</button>
       </div>
       <div className="hero-image">
         <img src={restaurantfood} alt="Restaurant Food" />

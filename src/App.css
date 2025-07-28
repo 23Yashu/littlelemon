@@ -31,7 +31,7 @@ header {
     align-items: center;
 }
 
-header img {
+header img, .secondary-header-logo {
     width: 150px;
     height: auto;
     cursor: pointer;
@@ -187,7 +187,7 @@ nav ul li a:hover {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .horizontal-line,
@@ -245,7 +245,7 @@ nav ul li a:hover {
     font-family: 'MarkaziText', sans-serif;
     font-size: 16px;
     font-weight: 400;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .delivery {
@@ -302,7 +302,6 @@ nav ul li a:hover {
     width: 300px;
     height: 300px;
     border-radius: 0.5rem;
-
 }
 
 .rating {
@@ -406,6 +405,13 @@ footer {
     align-items: center;
 }
 
+.secondary-footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #EDEFEE;
+    align-items: center;
+}
+
 .links {
     display: flex;
     flex-direction: row;
@@ -434,14 +440,28 @@ footer img {
     padding: 1rem 1rem 0 1rem;
 }
 
+.secondary-footer-website-links h3,
+.secondary-footer-contact-info h3,
+.secondary-footer-social-media h3 {
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #333;
+    padding: 1rem 1rem 0 1rem;
+}
+
 .website-links ul,
 .contact-info ul,
-.social-media ul {
+.social-media ul,
+.secondary-footer-website-links ul,
+.secondary-footer-contact-info ul,
+.secondary-footer-social-media ul
+ {
     list-style: none;
     padding: 1rem;
 }
 
-.website-links ul li {
+.website-links ul li, .secondary-footer-website-links ul li {
     padding: 0.5rem 0;
 }
 
@@ -453,12 +473,28 @@ footer img {
     font-weight: 600;
 }
 
-.contact-info ul li {
+.secondary-footer-website-links ul li a {
+    text-decoration: none;
+    color: #333;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.contact-info ul li, .secondary-footer-contact-info ul li {
     margin-bottom: 1rem;
 }
 
 .contact-info ul li p {
     color: #EDEFEE;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.secondary-footer-contact-info ul li p {
+    color: #333;
     font-family: 'Karla', sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -474,11 +510,20 @@ footer img {
     padding: 1rem 0;
 }
 
-.social-media ul li {
+.secondary-footer-contact-info ul li span {
+    color: #333;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+    padding: 1rem 0;
+}
+
+.social-media ul li, .secondary-footer-social-media ul li {
     padding: 0.5rem 0;
 }
 
-.website-links ul li a:hover {
+.website-links ul li a:hover, .secondary-footer-website-links ul li a:hover {
     color: #FBDABB;
     transition: color 0.3s ease;
 }
@@ -489,7 +534,13 @@ footer img {
     font-size: 30px;
 }
 
-.social-icons:hover {
+.secondary-footer-social-icons {
+    color: #333;
+    transition: color 0.3s ease;
+    font-size: 30px;
+}
+
+.social-icons:hover, .secondary-footer-social-icons:hover {
     color: #FBDABB;
 }
 
@@ -505,13 +556,41 @@ footer img {
     align-items: center;
 }
 
+.secondary-footer-copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #333;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 4rem 1rem 1rem 1rem;
+    align-items: center;
+}
+
 .copyright a {
     color: #EDEFEE;
     text-decoration: none;
 }
 
-.copyright a:hover {
+.secondary-footer-copyright a {
+    color: #333;
+    text-decoration: none;
+}
+
+.copyright a:hover, .secondary-footer-copyright a:hover {
     text-decoration: underline;
+}
+
+.secondary-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.secondary-header-home, .secondary-header-basket {
+    width: 40px;
+    height: 40px;
 }
 
 @media (max-width: 1024px) {
