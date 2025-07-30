@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import useSubmit from '../hooks/useSubmit';
+import { useReservation } from '../context/ReservationContext';
 import { useFormik } from 'formik';
 import {
     Box,
@@ -22,7 +25,14 @@ import FullScreenSection from './FullScreenSection';
 
 export default function Reservation() {
     const { isLoading, response, submit } = useSubmit();
-    // const {onOpen} = useAlertContext();
+    const navigate = useNavigate();
+    const { setReservationData } = useReservation();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 1);
+    maxDate.setHours(23, 59, 59, 999);
     const formik = useFormik({
         initialValues: {
             date: '',
@@ -33,11 +43,16 @@ export default function Reservation() {
         },
         onSubmit: (values) => { submit(null, values) },
         validationSchema: Yup.object({
-            date: Yup.string().required('Date is required').matches(
-                /^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/,
-                "Date must be in MM/DD/YYYY format"
-            ),
-            time: Yup.string().required('Time is required').matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Time must be in HH:MM format'),
+            date: Yup.string().required('Date is required')
+                .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format')
+                .test('within-range', 'Date must be within today and one month from now', function (value) {
+                    if (!value) return false;
+
+                    const selected = new Date(value + 'T00:00:00');
+
+                    return selected >= today && selected <= maxDate;
+                }),
+            time: Yup.string().required('Time is required').matches(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/, 'Time must be in HH:MM format'),
             numberOfDiners: Yup.string().required('Please enter the number of diners').matches(/^[1-9][0-9]*$/, 'Number of diners must be a positive integer'),
             occasion: Yup.string().required('Please select an occasion'),
             seatingOptions: Yup.string().required('Please select a seating option')
@@ -46,14 +61,14 @@ export default function Reservation() {
     });
 
 
-    // useEffect(() => {
-    //     if (response) {
-    //         onpointerenter(response.type, response.message);
-    //         if (response.type === 'success') {
-    //             formik.resetForm();
-    //         }
-    //     }
-    // }, [response]);
+    useEffect(() => {
+        if (response) {
+            if (response.type === 'success') {
+                setReservationData(formik.values);
+                navigate('/booking');
+            }
+        }
+    }, [response, formik.values, navigate, setReservationData]);
 
     return (
         <FullScreenSection
@@ -79,12 +94,13 @@ export default function Reservation() {
                         <VStack spacing={4}>
                             <FormControl isInvalid={formik.touched.date && Boolean(formik.errors.date)}>
                                 <FormLabel htmlFor="date" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Date</FormLabel>
-                                <Input id="date" name="date" type="date" {...formik.getFieldProps('date')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} />
+                                <Input id="date" name="date" type="date" min={new Date().toISOString()}
+                                    max={new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString()} {...formik.getFieldProps('date')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} />
                                 <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.date}</FormErrorMessage>
                             </FormControl>
                             <FormControl isInvalid={formik.touched.time && Boolean(formik.errors.time)}>
                                 <FormLabel htmlFor="time" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Time</FormLabel>
-                                <Input id="time" name="time" type="time" {...formik.getFieldProps('time')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} />
+                                <Input id="time" name="time" type="time" step={60} {...formik.getFieldProps('time')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} />
                                 <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.time}</FormErrorMessage>
                             </FormControl>
                             <FormControl isInvalid={formik.touched.numberOfDiners && Boolean(formik.errors.numberOfDiners)}>
@@ -118,14 +134,14 @@ export default function Reservation() {
                                             </Box>
                                         </Radio>
                                         <Radio value="outside"><Box fontFamily="Karla" fontSize="14px" color="white">
-                                                Outside
-                                            </Box>
+                                            Outside
+                                        </Box>
                                         </Radio>
                                     </VStack>
                                 </RadioGroup>
                                 <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.seatingOptions}</FormErrorMessage>
                             </FormControl>
-                            <Button type="submit" bg="#F4CE14" mt={4} fontFamily={'Karla'} fontSize={14} fontWeight={500}>
+                            <Button type="submit" bg="#F4CE14" mt={4} fontFamily={'Karla'} fontSize={14} fontWeight={500} w='100%' isLoading={isLoading}>
                                 Reserve Table
                             </Button>
                         </VStack>

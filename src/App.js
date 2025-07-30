@@ -8,6 +8,9 @@ import Footer from './components/Footer';
 import Reservation from '../src/components/Reservation';
 import SecondaryHeader from './components/SecondaryHeader';
 import SecondaryFooter from './components/SecondaryFooter';
+import Booking from './components/Booking';
+import Alert from './components/Alert';
+import Login from './components/Login';
 
 function ReservationPage() {
   const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
@@ -15,6 +18,28 @@ function ReservationPage() {
     <>
       {isLargerThan1024 ? <Header /> : <SecondaryHeader />}
       <Reservation />
+      {isLargerThan1024 && <SecondaryFooter />}
+    </>
+  )
+}
+
+function BookingPage() {
+  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
+  return (
+    <>
+      {isLargerThan1024 ? <Header /> : <SecondaryHeader />}
+      <Booking />
+      {isLargerThan1024 && <SecondaryFooter />}
+    </>
+  )
+}
+
+function LoginPage() {
+  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
+  return (
+    <>
+      {isLargerThan1024 ? <Header /> : <SecondaryHeader />}
+      <Login />
       {isLargerThan1024 && <SecondaryFooter />}
     </>
   )
@@ -56,7 +81,20 @@ function App() {
             <ReservationPage />
           }
         />
+        <Route
+          path='/booking'
+          element={
+            <BookingPage />
+          }
+        />
+        <Route
+          path='/login'
+          element={
+            <LoginPage />
+          }
+        />
       </Routes>
+      <Alert />
     </>
   );
 }

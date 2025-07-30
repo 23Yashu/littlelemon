@@ -1,5 +1,4 @@
 import logo from '../img/Logo.svg';
-import restaurant from '../img/restaurant.jpg';
 import Nav from './Nav';
 import { useEffect, useRef } from 'react';
 
@@ -30,7 +29,8 @@ function Header() {
     // Handle scroll hide/show
     useEffect(() => {
         const handleScroll = () => {
-            if (window.innerWidth < 1024) return; // disable for mobile
+            if (window.innerWidth < 1024) return;
+            if (!headerRef.current) return;
 
             const currentScrollY = window.scrollY;
 

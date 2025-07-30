@@ -475,7 +475,7 @@ footer img {
 
 .secondary-footer-website-links ul li a {
     text-decoration: none;
-    color: #333;
+    color: #495E57;
     font-family: 'Karla', sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -494,7 +494,7 @@ footer img {
 }
 
 .secondary-footer-contact-info ul li p {
-    color: #333;
+    color: #495E57;
     font-family: 'Karla', sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -511,7 +511,7 @@ footer img {
 }
 
 .secondary-footer-contact-info ul li span {
-    color: #333;
+    color: #495E57;
     font-family: 'Karla', sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -535,7 +535,7 @@ footer img {
 }
 
 .secondary-footer-social-icons {
-    color: #333;
+    color: #495E57;
     transition: color 0.3s ease;
     font-size: 30px;
 }
@@ -574,7 +574,7 @@ footer img {
 }
 
 .secondary-footer-copyright a {
-    color: #333;
+    color: #495E57;
     text-decoration: none;
 }
 
