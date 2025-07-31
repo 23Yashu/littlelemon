@@ -8,7 +8,7 @@ import About from './About';
 function Main() {
   const navigate = useNavigate();
   const handleBookingButtonClicked = () => {
-    navigate('/reservation');
+    navigate('/booking');
   }
   return (
       <main>

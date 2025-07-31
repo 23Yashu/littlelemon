@@ -1,10 +1,7 @@
-import { useFormik } from 'formik';
-import useSubmit from '../hooks/useSubmit';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useSubmit from '../hooks/useSubmit';
 import { useReservation } from '../context/ReservationContext';
-import FullScreenSection from './FullScreenSection';
-import { useAlertContext } from '../context/alertContext';
+import { useFormik } from 'formik';
 import {
     Box,
     Button,
@@ -13,74 +10,63 @@ import {
     FormLabel,
     Heading,
     Input,
+    Select,
     VStack,
+    HStack,
     Image,
-    Flex,
-    Text,
     Radio,
     RadioGroup,
-    HStack
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper,
 } from '@chakra-ui/react';
 import * as Yup from 'yup';
-import { FaChevronDown } from 'react-icons/fa';
-import creditcard from '../icons/creditcard.svg';
+import restaurant from '../img/restaurant.jpg';
+import restaurantChef from '../img/restaurantchefB.jpg';
+import FullScreenSection from './FullScreenSection';
 
-function BookingSummary({ date, time, numberOfDiners }) {
+export default function Booking({ availableTimes, dispatchAvailableTimes }) {
+    const { isLoading } = useSubmit();
     const navigate = useNavigate();
-    const handleChevronClick = () => {
-        navigate('/reservation');
-    }
-    return (
-        <Flex
-            border='1px solid #ccc'
-            borderRadius='md'
-            p={3}
-            bg='#EDEFEE'
-            fontWeight='bold'
-            fontSize='md'
-            alignItems='center'
-            w='100%'
-            boxShadow='sm'
-            justifyContent='space-between'
-        >
-            <Text bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={14} fontWeight={600}> {date} - {time} - {numberOfDiners} diners </Text>
-            <FaChevronDown ml={2} color='#333' onClick={handleChevronClick}/>
-        </Flex>
-    )
-}
+    const { setReservationData } = useReservation();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-function Booking() {
-    const { isLoading, response, submit } = useSubmit();
-    const { reservationData } = useReservation();
-    const {onOpen} = useAlertContext();
+    const maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 1);
+    maxDate.setHours(23, 59, 59, 999);
     const formik = useFormik({
         initialValues: {
-            cardNumber: '',
-            cardHolderName: '',
-            expiryDate: '',
-            cvv: '',
-            bookingConfirmationviaText: false,
-            bookingConfirmationviaEmail: false
+            date: '',
+            time: '',
+            numberOfDiners: '',
+            occasion: '',
+            seatingOptions: ''
         },
-        onSubmit: (values) => { submit(null, values) },
+        onSubmit: (values) => { 
+            setReservationData(values)
+            navigate('/payment');
+         },
         validationSchema: Yup.object({
-            cardNumber: Yup.string().required('Card number is required').matches(/^\d{16}$/, 'Card number must be 16 digits'),
-            cardHolderName: Yup.string().required('Card holder name is required'),
-            expiryDate: Yup.string().required('Expiry date is required').matches(/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/, 'Expiry date must be in MM/YY format'),
-            cvv: Yup.string().required('CVV is required').matches(/^\d{3}$/, 'CVV must be 3 digits'),
-            bookingConfirmation: Yup.string().required('Please choose how you would like to receive the booking confirmation details')
+            date: Yup.string().required('Date is required')
+                .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format')
+                .test('within-range', 'Date must be within today and one month from now', function (value) {
+                    if (!value) return false;
+
+                    const selected = new Date(value + 'T00:00:00');
+
+                    return selected >= today && selected <= maxDate;
+                }),
+            time: Yup.string().required('Time is required'),
+            numberOfDiners: Yup.string().required('Please enter the number of diners').matches(/^[1-9][0-9]*$/, 'Number of diners must be a positive integer'),
+            occasion: Yup.string().required('Please select an occasion'),
+            seatingOptions: Yup.string().required('Please select a seating option')
         }),
+
     });
 
-    useEffect(() => {
-        if (response) {
-            onOpen(response.type, response.message);
-            console.log('Response: ' + response.type + response.message);
-            if (response.type === 'success') {
-                formik.resetForm();
-            }
-        }
-    }, [response]);
     return (
         <FullScreenSection
             isDarkBackground
@@ -95,90 +81,99 @@ function Booking() {
                 alignItems="flex-start">
                 <Heading as="h1" fontFamily={'MarkaziText'} fontSize={64} fontWeight={800} color='#F4CE14'>Little Lemon</Heading>
                 <Heading as="h2" fontFamily={'MarkaziText'} fontSize={32} fontWeight={400} color='#EDEFEE'>Chicago</Heading>
-                <Heading as="h2" pt='4rem' fontFamily={'MarkaziText'} fontSize={50} fontWeight={400} color='#EDEFEE'>Booking Details</Heading>
-                <Box pt={6} rounded="md" w="100%">
-                    {reservationData ?
-                        <BookingSummary date={reservationData.date} time={reservationData.time} numberOfDiners={reservationData.numberOfDiners} />
-                        :
-                        <Box fontFamily={'MarkaziText'} fontSize={24} fontWeight={400} color='#EDEFEE'>No Booking data available</Box>
-                    }
-                    <Heading as="h2" pt='4rem' fontFamily={'MarkaziText'} fontSize={50} fontWeight={400} color='#EDEFEE'>Credit Card Details</Heading>
+                <Heading as="h2" pt='4rem'>Find a table for any occasion</Heading>
+                <HStack spacing={4}>
+                    <Image src={restaurant} alt="Restaurant Image" w='40vw' h='40vh' />
+                    <Image src={restaurantChef} alt="Restaurant Chef Image" w='40vw' h='40vh' />
+                </HStack>
+                <Box p={6} rounded="md" w="100%">
                     <form onSubmit={formik.handleSubmit}>
                         <VStack spacing={4}>
-                            <FormControl isInvalid={formik.touched.cardNumber && Boolean(formik.errors.cardNumber)}>
-                                <Input id="cardNumber" type="text" {...formik.getFieldProps('cardNumber')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} placeholder='Card Number' _placeholder={{color: '#495E57', fontWeight:600}} />
-                                <FormErrorMessage>{formik.errors.cardNumber}</FormErrorMessage>
+                            <FormControl isInvalid={formik.touched.date && Boolean(formik.errors.date)}>
+                                <FormLabel htmlFor="date" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Date</FormLabel>
+                                <Input id="date" name="date" type="date" min={new Date().toISOString()}
+                                    max={new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString()} {...formik.getFieldProps('date')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400}
+                                    onChange={(e) => {
+                                        const newDate = e.target.value;
+                                        formik.setFieldValue('date', newDate);
+                                        dispatchAvailableTimes({ type: 'UPDATE_TIMES', date: newDate });
+                                    }}
+                                    onBlur={formik.handleBlur}
+                                />
+                                <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.date}</FormErrorMessage>
                             </FormControl>
-                            <FormControl isInvalid={formik.touched.cardHolderName && Boolean(formik.errors.cardHolderName)}>
-                                <Input id="cardHolderName" type="text" {...formik.getFieldProps('cardHolderName')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400}  placeholder='Card Holder Name' _placeholder={{color: '#495E57', fontWeight:600}} />
-                                <FormErrorMessage>{formik.errors.cardHolderName}</FormErrorMessage>
+                            <FormControl isInvalid={formik.touched.time && Boolean(formik.errors.time)}>
+                                <FormLabel htmlFor="time" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Time</FormLabel>
+                                <Select id="time" name="time" {...formik.getFieldProps('time')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400}>
+                                    {availableTimes.map((time) => (
+                                        <option key={time} value={time}>{time}</option>
+                                    ))}
+                                </Select>
+                                <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.time}</FormErrorMessage>
                             </FormControl>
-                            <HStack spacing={4} align="end">
-                                <FormControl isInvalid={formik.touched.expiryDate && Boolean(formik.errors.expiryDate)}>
-                                    <FormLabel htmlFor="expiryDate" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Exp Date</FormLabel>
-                                    <Input
-                                        id="expiryDate"
-                                        type="text"
-                                        placeholder="MM/ YYYY"
-                                        _placeholder={{color:'#333', fontWeight:600}}
-                                        {...formik.getFieldProps('expiryDate')}
-                                        bg='#EDEFEE'
-                                        color='#333'
-                                        fontFamily={'Karla'}
+                            <FormControl isInvalid={formik.touched.numberOfDiners && Boolean(formik.errors.numberOfDiners)}>
+                                <FormLabel htmlFor="numberOfDiners" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Number of Diners</FormLabel>
+                                <NumberInput
+                                    width="100%"
+                                    min={1}
+                                    max={10}
+                                    value={formik.values.numberOfDiners}
+                                    onChange={(value) => formik.setFieldValue('numberOfDiners', value)}
+                                >
+                                    <NumberInputField
+                                        id="numberOfDiners"
+                                        name="numberOfDiners"
+                                        bg="#EDEFEE"
+                                        color="#333"
+                                        fontFamily="Karla"
                                         fontSize={12}
                                         fontWeight={400}
+                                        onBlur={formik.handleBlur}
                                     />
-                                    <FormErrorMessage>{formik.errors.expiryDate}</FormErrorMessage>
-                                </FormControl>
-
-                                <FormControl isInvalid={formik.touched.cvv && Boolean(formik.errors.cvv)}>
-                                    <FormLabel htmlFor="cvv" fontFamily={'Karla'} fontSize={16} fontWeight={400}>CVV</FormLabel>
-                                    <Flex align="center" bg="#EDEFEE" borderRadius="md">
-                                        <Input
-                                            id="cvv"
-                                            type="text"
-                                            {...formik.getFieldProps('cvv')}
-                                            bg="transparent"
-                                            border="none"
-                                            color="#333"
-                                            fontFamily={'Karla'}
-                                            fontSize={12}
-                                            fontWeight={400}
-                                            _focus={{ border: 'none', outline: 'none' }}
-                                            pr="0"
-                                        />
-                                        <Image src={creditcard} alt='credit card icon' h="30px" w="30px" mr="2" />
-                                    </Flex>
-                                    <FormErrorMessage>{formik.errors.cvv}</FormErrorMessage>
-                                </FormControl>
-                            </HStack>
-
-                            <FormControl isInvalid={formik.touched.bookingConfirmation && Boolean(formik.errors.bookingConfirmation)}>
+                                    <NumberInputStepper>
+                                        <NumberIncrementStepper color="#495E57" />
+                                        <NumberDecrementStepper color="#495E57" />
+                                    </NumberInputStepper>
+                                </NumberInput>
+                                {/* <Input id="numberOfDiners" name="numberOfDiners" type="number" min={1}
+                                    max={10} {...formik.getFieldProps('numberOfDiners')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} /> */}
+                                <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.numberOfDiners}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.touched.occasion && Boolean(formik.errors.occasion)}>
+                                <FormLabel htmlFor="occasion" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Occasion (Optional)</FormLabel>
+                                <Select id="occasion" name="occasion" {...formik.getFieldProps('occasion')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400}>
+                                    <option value="" bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} >Select an occasion</option>
+                                    <option value="birthday" bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400}>Birthday</option>
+                                    <option value="anniversary" bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400}>Anniversary</option>
+                                    <option value="other" bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400}>Other</option>
+                                </Select>
+                                <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.occasion}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.touched.seatingOptions && Boolean(formik.errors.seatingOptions)}>
+                                <FormLabel htmlFor="seatingOptions" fontFamily={'Karla'} fontSize={18} fontWeight={400}>Seating Options</FormLabel>
                                 <RadioGroup
-                                    id="bookingConfirmation"
-                                    name="bookingConfirmation"
-                                    value={formik.values.bookingConfirmation}
-                                    onChange={(value) => formik.setFieldValue("bookingConfirmation", value)}
+                                    id="seatingOptions"
+                                    name="seatingOptions"
+                                    value={formik.values.seatingOptions}
+                                    onChange={(value) => formik.setFieldValue("seatingOptions", value)}
                                     color='#EDEFEE' fontFamily={'Karla'}
                                 >
                                     <VStack align="start">
-                                        <Radio value="bookingconfirmationviatext" fontFamily="Karla" fontSize="14px">
+                                        <Radio value="standard" fontFamily="Karla" fontSize="14px">
                                             <Box fontFamily="Karla" fontSize="14px" color="white">
-                                                Send me booking confirmation via text
+                                                Standard
                                             </Box>
                                         </Radio>
-                                        <Radio value="bookingconfirmationviaemail">
-                                            <Box fontFamily="Karla" fontSize="14px" color="white">
-                                                Send me booking confirmation via email
-                                            </Box>
-
+                                        <Radio value="outside"><Box fontFamily="Karla" fontSize="14px" color="white">
+                                            Outside
+                                        </Box>
                                         </Radio>
                                     </VStack>
                                 </RadioGroup>
                                 <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.seatingOptions}</FormErrorMessage>
                             </FormControl>
-                            <Button type="submit" bg="#F4CE14" mt={4} fontFamily={'Karla'} fontSize={14} fontWeight={600} w='100%' isLoading={isLoading}>
-                                Book
+                            <Button type="submit" bg="#F4CE14" mt={4} fontFamily={'Karla'} fontSize={14} fontWeight={500} w='100%' isLoading={isLoading}>
+                                Reserve Table
                             </Button>
                         </VStack>
                     </form>
@@ -187,5 +182,3 @@ function Booking() {
         </FullScreenSection>
     )
 }
-
-export default Booking

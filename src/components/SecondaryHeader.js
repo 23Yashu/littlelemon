@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import restaurant from '../img/restaurant.jpg';
 import logo from '../img/Logo.svg';
 import homeicon from '../icons/homeicon.svg';
 import basket from '../icons/basket.svg';

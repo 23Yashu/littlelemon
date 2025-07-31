@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useAlertContext } from '../context/alertContext';
-import useSubmit from '../hooks/useSubmit';
+import useLogin from '../hooks/useLogin';
 import FullScreenSection from './FullScreenSection';
 import {
     Box,
@@ -18,7 +18,7 @@ import * as Yup from 'yup';
 import eyeIcon from '../icons/eye-icon.svg';
 
 function Login() {
-        const {isLoading, response, submit} = useSubmit();
+        const {isLoading, response, submit} = useLogin();
         const {onOpen} = useAlertContext();
         const formik = useFormik({
             initialValues: {
