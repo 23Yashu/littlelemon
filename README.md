@@ -97,5 +97,5 @@ npm start
 
 * Figma: For UI/UX design and prototyping.
 
-Copyright (c) 2025 [Yashasvi Vashistha](https://www.linkedin.com/in/yashasvi-vashistha). All rights reserved.
+Copyright © 2025 [Yashasvi Vashistha](https://www.linkedin.com/in/yashasvi-vashistha). All rights reserved.
 No part of this repository may be copied, distributed, or used without explicit permission from the author.
