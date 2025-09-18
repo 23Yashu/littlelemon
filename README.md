@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Little Lemon Restaurant – Front-End Capstone Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Overview
 
-## Available Scripts
+Welcome to the **Little Lemon Restaurant** project! This application serves as the final capstone project for the Meta Front-End Developer Professional Certificate, offered through Coursera. The project showcases my proficiency in building responsive, interactive, and user-friendly web applications using modern front-end technologies.
 
-In the project directory, you can run:
+### Project Features
 
-### `npm start`
+**Online Reservation System**: Users can book tables by selecting the date, time, number of guests, and occasion.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Responsive Design**: The website is optimized for various devices, ensuring a seamless user experience across desktops, tablets, and smartphones.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Dynamic Menu Display**: A section showcasing the restaurant's dishes, complete with images and descriptions.
 
-### `npm test`
+**Interactive UI Components**: Utilizing React.js to create dynamic and reusable components.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**State Management**: Efficiently managing application state using React Hooks and Context API.
 
-### `npm run build`
+### Technical Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Frontend**: React.js, HTML5, CSS3, JavaScript (ES6+)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**State Management**: React Context API, React Hooks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**UI Design**: Figma for wireframing and UI design
 
-### `npm run eject`
+**Version Control**: Git, GitHub
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Setup and Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To run this project locally:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repository:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/23Yashu/littlelemon.git
+```
 
-## Learn More
+2. Navigate into the project directory:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd littlelemon
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Install dependencies:
 
-### Code Splitting
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Start the development server:
 
-### Analyzing the Bundle Size
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. Open your browser and visit [http://localhost:3000](http://localhost:3000).
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Project Structure
+* public/: Static files like index.html and images.
 
-### Advanced Configuration
+* src/: Source code files
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* components/: Reusable UI components
 
-### Deployment
+* pages/: Different pages of the application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* context/: React Context for state management
 
-### `npm run build` fails to minify
+* assets/: Images and other media
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* App.js: Main application component
+
+### Screenshots
+
+#### HomePage 
+<img width="1728" height="1117" alt="Screenshot 2025-09-18 at 1 50 19 PM" src="https://github.com/user-attachments/assets/cff0c6bc-6bd1-4074-b954-5a37bde0c3d6" />
+
+#### Learning Outcomes
+
+* Hands-on experience building a full React application.
+
+* Understanding React’s component-based architecture.
+
+* Skills in responsive web design and UX principles.
+
+* State management using React Context API.
+
+* UI/UX design experience via wireframing and prototyping.
+
+#### Acknowledgments
+
+* Meta: For the Front-End Developer Professional Certificate program.
+
+* Coursera: Learning platform for front-end development.
+
+* Figma: For UI/UX design and prototyping.
+
+Copyright (c) 2025 [Yashasvi Vashistha](https://www.linkedin.com/in/yashasvi-vashistha). All rights reserved.
+No part of this repository may be copied, distributed, or used without explicit permission from the author.
