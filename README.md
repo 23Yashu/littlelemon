@@ -85,23 +85,36 @@ npm start
 
 
 ### Project Structure
+```text
 littlelemon/
-├── frontend/             # React application
-│   ├── src/components/   # UI Components (Booking, Login, Payment)
-│   └── src/hooks/        # Custom hooks for API communication
-├── backend/              # Spring Boot application
-│   ├── src/main/java/    # Java 25 Source code
-│   └── docker-compose.yml # Local Database setup
-└── vercel.json           # Vercel Monorepo configuration
+├── frontend/                # React.js Application (Vercel)
+│   ├── public/              # Static assets (favicon, index.html)
+│   ├── src/
+│   │   ├── components/      # UI: BookingForm, Login, Payment, Nav
+│   │   ├── context/         # React Context (Alerts, Reservations)
+│   │   ├── hooks/           # Custom Hooks (useLogin, useSubmit)
+│   │   ├── icons/           # SVG and UI icons
+│   │   └── App.js           # Main Routing and API fetching
+│   └── package.json         # Frontend dependencies
+├── backend/                 # Spring Boot API (Railway + Java 25)
+│   ├── src/main/java/       # Java Source Code (Records, Controllers)
+│   ├── src/main/resources/  # application.properties & SQL scripts
+│   ├── docker-compose.yml   # Local PostgreSQL setup for development
+│   └── pom.xml              # Maven Dependencies (SB 4.0.5)
+├── vercel.json              # Deployment config for Monorepo
+└── README.md                # Project documentation
+```
 
 ### Environment Variables
 
 To run this project in production, set the following variables:
-SPRING_DATASOURCE_URL	 = Supabase JDBC Connection String
-SPRING_DATASOURCE_PASSWORD	= Supabase DB Password
-APP_FRONTEND_URL	= Your Vercel deployment URL (for CORS)
-REACT_APP_API_URL	= Your Railway deployment URL
-SPRING_THREADS_VIRTUAL_ENABLED	= true (Enable Java 25 Loom)
+| Variable | Description | Deployment Platform |
+| :--- | :--- | :--- |
+| `SPRING_DATASOURCE_URL` | Supabase JDBC Connection String | **Railway** (Backend) |
+| `SPRING_DATASOURCE_PASSWORD` | Supabase Database Password | **Railway** (Backend) |
+| `APP_FRONTEND_URL` | Your Vercel deployment URL (Required for CORS) | **Railway** (Backend) |
+| `REACT_APP_API_URL` | Your Railway deployment URL (API Gateway) | **Vercel** (Frontend) |
+| `SPRING_THREADS_VIRTUAL_ENABLED` | Set to `true` to enable **Java 25 Virtual Threads** | **Railway** (Backend) |
 
 ### Screenshots
 
