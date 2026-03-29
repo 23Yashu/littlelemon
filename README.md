@@ -1,8 +1,8 @@
-# Little Lemon Restaurant – Front-End Capstone Project
+# 🍋 Little Lemon Restaurant - Full Stack
 
 ### Overview
 
-Welcome to the **Little Lemon Restaurant** project! This application serves as the final capstone project for the Meta Front-End Developer Professional Certificate, offered through Coursera. The project showcases my proficiency in building responsive, interactive, and user-friendly web applications using modern front-end technologies.
+Welcome to the **Little Lemon Restaurant** project! Little Lemon is a modern restaurant application featuring a real-time table booking system, user registration for loyalty points, and automated email confirmations. Originally developed as the Meta Front-End Developer Capstone, it has been re-engineered in March 2026 to leverage a high-concurrency backend.
 
 ### Project Features
 
@@ -16,9 +16,23 @@ Welcome to the **Little Lemon Restaurant** project! This application serves as t
 
 **State Management**: Efficiently managing application state using React Hooks and Context API.
 
+**High-Concurrency Backend**: Powered by Java 25 Virtual Threads (Project Loom), allowing the server to handle thousands of concurrent bookings with minimal memory overhead.
+
+**Real-Time Availability**: Replaced mock API logic with a robust Spring Boot service that checks actual database occupancy before allowing reservations.
+
+**Stateful Reservations**: Bookings are saved as PENDING during the selection phase and updated to CONFIRMED only after successful payment simulation.
+
+**Secure Authentication**: User registration features BCrypt password hashing and persistent storage in Supabase (PostgreSQL).
+
+**Async Notifications**: Email confirmations are dispatched on background virtual threads to ensure zero-latency UI responses.
+
 ### Technical Stack
 
 **Frontend**: React.js, HTML5, CSS3, JavaScript (ES6+)
+
+**Backend**: Spring Boot 4.0.5, Java 25 (Utilizing Records, Pattern Matching, and Virtual Threads), Spring Data JPA (Database ORM), Spring Boot Docker Compose (Dev Environment)
+
+**Database**: Supabase (PostgreSQL 16+)
 
 **State Management**: React Context API, React Hooks
 
@@ -26,7 +40,14 @@ Welcome to the **Little Lemon Restaurant** project! This application serves as t
 
 **Version Control**: Git, GitHub
 
+**Hosting**: Vercel (Frontend) & Railway.app (Backend)
+
 ### Setup and Installation
+
+**Prerequisites**
+Java 25 & Maven 3.9.14
+Node.js 22+
+Docker Desktop (for local DB)
 
 To run this project locally:
 
@@ -42,35 +63,41 @@ git clone https://github.com/23Yashu/littlelemon.git
 cd littlelemon
 ```
 
-3. Install dependencies:
 
-```bash
+3. Backend Setup
+
+cd backend
+# Update application.properties with your Supabase credentials
+./mvnw spring-boot:run
+
+4. Frontend Setup
+
+cd frontend
 npm install
-```
-
-4. Start the development server:
-
-```bash
+# Set REACT_APP_API_URL=http://localhost:8080 in .env
 npm start
-```
 
 5. Open your browser and visit [http://localhost:3000](http://localhost:3000).
 
 
 ### Project Structure
-* public/: Static files like index.html and images.
+littlelemon/
+├── frontend/             # React application
+│   ├── src/components/   # UI Components (Booking, Login, Payment)
+│   └── src/hooks/        # Custom hooks for API communication
+├── backend/              # Spring Boot application
+│   ├── src/main/java/    # Java 25 Source code
+│   └── docker-compose.yml # Local Database setup
+└── vercel.json           # Vercel Monorepo configuration
 
-* src/: Source code files
+### Environment Variables
 
-* components/: Reusable UI components
-
-* pages/: Different pages of the application
-
-* context/: React Context for state management
-
-* assets/: Images and other media
-
-* App.js: Main application component
+To run this project in production, set the following variables:
+SPRING_DATASOURCE_URL	 = Supabase JDBC Connection String
+SPRING_DATASOURCE_PASSWORD	= Supabase DB Password
+APP_FRONTEND_URL	= Your Vercel deployment URL (for CORS)
+REACT_APP_API_URL	= Your Railway deployment URL
+SPRING_THREADS_VIRTUAL_ENABLED	= true (Enable Java 25 Loom)
 
 ### Screenshots
 
