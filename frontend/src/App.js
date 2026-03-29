@@ -13,7 +13,7 @@ import Alert from './components/Alert';
 import Login from './components/Login';
 import ConfirmedBooking from './components/ConfirmedBooking';
 
-const API_BASE = "https://thorough-fascination-production.up.railway.app";
+const API_BASE = "https://thorough-fascination-production-6e0c.up.railway.app";
 
 export const timesReducer = (state, action) => {
     switch (action.type) {
