@@ -18,7 +18,7 @@ import * as Yup from 'yup';
 import eyeIcon from '../icons/eye-icon.svg';
 
 function Login() {
-        const {isLoading, response, submit} = useLogin();
+        const {isLoading, response} = useLogin();
         const {onOpen} = useAlertContext();
         const formik = useFormik({
             initialValues: {
@@ -29,11 +29,37 @@ function Login() {
                 password: '',
                 request: ''
             },
-            onSubmit: (values) => { submit(null, values) },
+            onSubmit: async (values) => {
+                try {
+                    const response = await fetch("/api/users/register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            firstName: values.firstName,
+                            lastName: values.lastName,
+                            phoneNumber: values.phoneNumber,
+                            email: values.email,
+                            password: values.password,
+                            specialRequest: values.request
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        onOpen("success", `Welcome ${data.firstName}! You earned ${data.points} points.`);
+                        formik.resetForm();
+                    } else {
+                        onOpen("error", data.message || "Registration failed");
+                    }
+                } catch (error) {
+                    onOpen("error", "Server is down. Please try again later.");
+                }
+            },
             validationSchema: Yup.object({
                 firstName: Yup.string().required('First name is required'),
                 lastName: Yup.string().required('Last name is required'),
-                phoneNumber: Yup.string().matches(/^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/, 'Phone number is not valid').required('Phone number is required'),
+                phoneNumber: Yup.string().matches(/^((\+\d{1,3}([- ])?\(?\d\)?([- ])?\d{1,3})|(\(?\d{2,3}\)?))([- ])?(\d{3,4})([- ])?(\d{4})(( x| ext)\d{1,5}){0,1}$/, 'Phone number is not valid').required('Phone number is required'),
                 email: Yup.string().email('Invalid email address'),
                 password: Yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
                 request: Yup.string().max(150, 'Request must be 150 characters or less')
@@ -104,6 +130,6 @@ function Login() {
             </VStack>
             </FullScreenSection>
         );
-    };
+    }
 
-    export default Login;
+export default Login;

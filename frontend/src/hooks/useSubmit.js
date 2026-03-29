@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { submitAPI } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -15,9 +14,7 @@ const useSubmit = () => {
     setLoading(true);
     try {
       console.log('Data: ', data);
-      const result = await submitAPI(data);
-      console.log('Result: ', result);
-      if (result) {
+      if (data) {
           navigate('/confirmed');
       }
     } catch (error) {

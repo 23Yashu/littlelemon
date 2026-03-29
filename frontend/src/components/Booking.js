@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useSubmit from '../hooks/useSubmit';
 import { useReservation } from '../context/ReservationContext';
@@ -27,7 +28,7 @@ import restaurant from '../img/restaurant.jpg';
 import restaurantChef from '../img/restaurantchefB.jpg';
 import FullScreenSection from './FullScreenSection';
 
-export default function Booking({ availableTimes, dispatchAvailableTimes }) {
+export default function Booking({ availableTimes, dispatchAvailableTimes, updateTimes }) {
     const { isLoading } = useSubmit();
     const navigate = useNavigate();
     const { setReservationData } = useReservation();
@@ -39,17 +40,43 @@ export default function Booking({ availableTimes, dispatchAvailableTimes }) {
     maxDate.setHours(23, 59, 59, 999);
     const formik = useFormik({
         initialValues: {
+            name: '',
+            phoneNumber: '',
+            email: '',
             date: '',
             time: '',
             numberOfDiners: '',
             occasion: '',
             seatingOptions: ''
         },
-        onSubmit: (values) => { 
-            setReservationData(values)
-            navigate('/payment');
+        onSubmit: async (values) => {
+            try {
+                const respone = await fetch("/api/bookings", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        name: values.name,
+                        phoneNumber: values.phoneNumber,
+                        email: values.email,
+                        bookingDate: values.date,
+                        bookingTime: values.time,
+                        numberOfDiners: parseInt(values.numberOfDiners),
+                        occasion: values.occasion,
+                        seatingOptions: values.seatingOptions
+                    })
+                });
+                const savedBooking = await respone.json();
+                console.log("Saved Data from DB:", savedBooking);
+                setReservationData(savedBooking);
+                navigate('/payment', { state: { bookingId: savedBooking.id } });
+            } catch (e) {
+                console.error("Booking failed", e);
+            }
          },
         validationSchema: Yup.object({
+            name: Yup.string().required('Name is required'),
+            phoneNumber: Yup.string().matches(/^((\+\d{1,3}([- ])?\(?\d\)?([- ])?\d{1,3})|(\(?\d{2,3}\)?))([- ])?(\d{3,4})([- ])?(\d{4})(( x| ext)\d{1,5}){0,1}$/, 'Phone number is not valid').required('Phone number is required'),
+            email: Yup.string().email('Invalid email address'),
             date: Yup.string().required('Date is required')
                 .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format')
                 .test('within-range', 'Date must be within today and one month from now', function (value) {
@@ -66,6 +93,17 @@ export default function Booking({ availableTimes, dispatchAvailableTimes }) {
         }),
 
     });
+
+    useEffect(() => {
+        if (formik.values.date) {
+            fetch(`/api/bookings/availability?date=${formik.values.date}`)
+                .then(res => res.json())
+                .then(data => {
+                    const freeTimes = data.filter(slot => slot.isAvailable).map(slot => slot.time);
+                    dispatchAvailableTimes({ type: 'UPDATED_TIMES', payload: freeTimes })
+                });
+        }
+    }, [formik.values.date]);
 
     return (
         <FullScreenSection
@@ -89,6 +127,21 @@ export default function Booking({ availableTimes, dispatchAvailableTimes }) {
                 <Box p={6} rounded="md" w="100%">
                     <form onSubmit={formik.handleSubmit}>
                         <VStack spacing={4}>
+                            <FormControl isInvalid={formik.touched.name && Boolean(formik.errors.name)}>
+                                <FormLabel htmlFor="name" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Full Name</FormLabel>
+                                <Input id="name" name="name" {...formik.getFieldProps('name')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} placeholder='Full Name' _placeholder={{color: '#333', fontWeight:400}} />
+                                <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.name}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}>
+                                <FormLabel htmlFor="phoneNumber" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Phone Number</FormLabel>
+                                <Input id="phoneNumber" name="phoneNumber" {...formik.getFieldProps('phoneNumber')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} placeholder='Phone Number' _placeholder={{color: '#333', fontWeight:400}} />
+                                <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.phoneNumber}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.touched.email && Boolean(formik.errors.email)}>
+                                <FormLabel htmlFor="email" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Email</FormLabel>
+                                <Input id="email" name="email" {...formik.getFieldProps('email')} bg='#EDEFEE' color='#333' fontFamily={'Karla'} fontSize={12} fontWeight={400} placeholder='Email' _placeholder={{color: '#333', fontWeight:400}} />
+                                <FormErrorMessage fontFamily={'Karla'} fontSize={12} fontWeight={400}>{formik.errors.email}</FormErrorMessage>
+                            </FormControl>
                             <FormControl isInvalid={formik.touched.date && Boolean(formik.errors.date)}>
                                 <FormLabel htmlFor="date" fontFamily={'Karla'} fontSize={16} fontWeight={400}>Date</FormLabel>
                                 <Input id="date" name="date" type="date" min={new Date().toISOString()}
@@ -96,7 +149,7 @@ export default function Booking({ availableTimes, dispatchAvailableTimes }) {
                                     onChange={(e) => {
                                         const newDate = e.target.value;
                                         formik.setFieldValue('date', newDate);
-                                        dispatchAvailableTimes({ type: 'UPDATE_TIMES', date: newDate });
+                                        updateTimes(newDate);
                                     }}
                                     onBlur={formik.handleBlur}
                                 />

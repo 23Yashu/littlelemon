@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0fab0a2e-12e0-4fbe-bf6b-c00e6e15ef00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/BackendApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/api/AvailabilityResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/api/booking/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/api/booking/BookingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/api/payment/PaymentRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/api/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/api/user/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/controller/BookingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/controller/PaymentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/littlelemon/backend/service/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/littlelemon/backend/BackendApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/About.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Alert.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Booking.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ConfirmedBooking.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/FullScreenSection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Hero.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Highlights.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/HighlightsCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Nav.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Payment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/SecondaryFooter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/SecondaryHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Testimonials.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/TestimonialsCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/context/ReservationContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/context/alertContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/css/Booking.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/Karla-Italic-VariableFont_wght.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/Karla-VariableFont_wght.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/OFL.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-ExtraBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-ExtraBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-ExtraLight.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-ExtraLightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-MediumItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Karla/static/Karla-SemiBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Markazi_Text/MarkaziText-VariableFont_wght.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Markazi_Text/OFL.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Markazi_Text/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Markazi_Text/static/MarkaziText-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Markazi_Text/static/MarkaziText-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Markazi_Text/static/MarkaziText-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/fonts/Markazi_Text/static/MarkaziText-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/useLogin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/useSubmit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/icons/basket.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/icons/creditcard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/icons/eye-icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/icons/food-delivery.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/icons/hamburger.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/icons/homeicon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/Logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/MarioAdrianA.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/MarioAdrianB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/bruchetta.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/greeksalad.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/lemondessert.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/restauranfood.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/restaurant.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/restaurantchefB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/user1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/user2.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/user3.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/img/user4.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/reportWebVitals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/test/Booking.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/utils/test-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/About.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Booking.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ConfirmedBooking.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FullScreenSection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Hero.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Highlights.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HighlightsCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Nav.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SecondaryFooter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SecondaryHeader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Testimonials.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TestimonialsCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/ReservationContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/alertContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Booking.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/Karla-Italic-VariableFont_wght.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/Karla-VariableFont_wght.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-BoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-ExtraBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-ExtraLightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-Italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-LightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-MediumItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Karla/static/Karla-SemiBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Markazi_Text/MarkaziText-VariableFont_wght.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Markazi_Text/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Markazi_Text/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Markazi_Text/static/MarkaziText-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Markazi_Text/static/MarkaziText-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Markazi_Text/static/MarkaziText-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fonts/Markazi_Text/static/MarkaziText-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useSubmit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/basket.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/creditcard.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/eye-icon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/food-delivery.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/hamburger.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/homeicon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/Logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/MarioAdrianA.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/MarioAdrianB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/bruchetta.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/greeksalad.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/lemondessert.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/restauranfood.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/restaurant.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/restaurantchefB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/user1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/user2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/user3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/user4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Booking.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/test-utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/timesReducer.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3BZjH1CdKSayh3bNUeURJ3nJUJ8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.LittlelemonApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/yashasvi/Projects/littlelemon",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend" />
+      <recent name="$PROJECT_DIR$/frontend" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/frontend" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.LittlelemonApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="littlelemon" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="littlelemon" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.littlelemon.backend.BackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LittlelemonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.littlelemon.backend.BackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28539.33" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28539.33" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0fab0a2e-12e0-4fbe-bf6b-c00e6e15ef00" name="Changes" comment="" />
+      <created>1774703394927</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774703394927</updated>
+      <workItem from="1774703396129" duration="984000" />
+      <workItem from="1774704414457" duration="6368000" />
+      <workItem from="1774770478732" duration="1254000" />
+      <workItem from="1774771907283" duration="14941000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/components/Login.js</url>
+          <line>16</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

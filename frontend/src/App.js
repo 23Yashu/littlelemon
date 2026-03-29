@@ -12,17 +12,48 @@ import Payment from './components/Payment';
 import Alert from './components/Alert';
 import Login from './components/Login';
 import ConfirmedBooking from './components/ConfirmedBooking';
-import { initializeTimes, updateTimes } from './utils/timesReducer';
 
+export const timesReducer = (state, action) => {
+    switch (action.type) {
+        case 'SET_TIMES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
 function BookingPage() {
   const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
-  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, [], initializeTimes);
+  const [availableTimes, dispatch] = useReducer(timesReducer, []);
+
+  const fetchBackendAvailability = async (date) => {
+      try {
+          const response = await fetch(`/api/bookings/availability?date=${date}`);
+          const data = await response.json();
+          console.log("Data received from backend: ", data);
+          if (!Array.isArray(data)) {
+              console.error("Backend did not return an array. Check the console for the error object");
+              return;
+          }
+          const realTimes = data
+              .filter(slot => slot.isAvailable)
+              .map(slot => slot.time);
+          dispatch({ type: 'SET_TIMES', payload: realTimes });
+      } catch (error) {
+          console.error("Failed to fetch from Spring Boot: ", error);
+      }
+  }
+
+    useEffect(() => {
+        const today = new Date().toISOString().split('T')[0];
+        fetchBackendAvailability(today);
+    }, []);
   return (
     <>
       {isLargerThan1024 ? <Header /> : <SecondaryHeader />}
       <Booking
         availableTimes={availableTimes}
-        dispatchAvailableTimes={dispatchAvailableTimes}
+        dispatchAvailableTimes={dispatch}
+        updateTimes={fetchBackendAvailability}
       />
       {isLargerThan1024 && <SecondaryFooter />}
     </>

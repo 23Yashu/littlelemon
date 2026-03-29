@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import useSubmit from '../hooks/useSubmit';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useReservation } from '../context/ReservationContext';
 import FullScreenSection from './FullScreenSection';
 import { useAlertContext } from '../context/alertContext';
@@ -51,6 +51,8 @@ function BookingSummary({ date, time, numberOfDiners }) {
 
 function Payment() {
     const { isLoading, response, submit } = useSubmit();
+    const location = useLocation();
+    const bookingIdFromState = location.state?.bookingId;
     const { reservationData } = useReservation();
     const { onOpen } = useAlertContext();
     const formik = useFormik({
@@ -59,20 +61,27 @@ function Payment() {
             cardHolderName: '',
             expiryDate: '',
             cvv: '',
-            bookingConfirmationviaText: false,
-            bookingConfirmationviaEmail: false
+            bookingConfirmation: ''
         },
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             if (!reservationData) return;
-            const payload = {
-                ...values,
-                date: reservationData.date,
-                time: reservationData.time,
-                numberOfDiners: reservationData.numberOfDiners,
-                occasion: reservationData.occasion,
-                seatingOptions: reservationData.seatingOptions
+            const finalBookingId = bookingIdFromState || reservationData?.id;
+            if (!finalBookingId) {
+                alert("No booking ID found. Please go back and reserve your table again.");
+                return;
             }
-            submit(null, payload);
+            console.log("Sending to backend ID:", finalBookingId);
+            const response = await fetch("/api/payments/confirm", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    bookingId: finalBookingId,
+                    ...values
+                })
+            });
+            if (response.ok) {
+            submit(null, response);
+            }
         },
         validationSchema: Yup.object({
             cardNumber: Yup.string().required('Card number is required').matches(/^\d{16}$/, 'Card number must be 16 digits'),
@@ -169,12 +178,12 @@ function Payment() {
                                     color='#EDEFEE' fontFamily={'Karla'}
                                 >
                                     <VStack align="start">
-                                        <Radio value="bookingconfirmationviatext" fontFamily="Karla" fontSize="14px">
+                                        <Radio value="TEXT" fontFamily="Karla" fontSize="14px">
                                             <Box fontFamily="Karla" fontSize="14px" color="white">
                                                 Send me booking confirmation via text
                                             </Box>
                                         </Radio>
-                                        <Radio value="bookingconfirmationviaemail">
+                                        <Radio value="EMAIL">
                                             <Box fontFamily="Karla" fontSize="14px" color="white">
                                                 Send me booking confirmation via email
                                             </Box>
