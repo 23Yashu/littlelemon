@@ -123,23 +123,21 @@ To run this project in production, set the following variables:
 
 #### Learning Outcomes
 
-* Hands-on experience building a full React application.
+This project served as the ultimate test of my ability to build a production-grade, full-stack ecosystem. Key takeaways include:
 
-* Understanding React’s component-based architecture.
-
-* Skills in responsive web design and UX principles.
-
-* State management using React Context API.
-
-* UI/UX design experience via wireframing and prototyping.
+*   **Full-Stack Architecture:** Architecting a high-performance system connecting a React frontend to a Spring Boot backend.
+*   **Modern Java Performance:** Practical implementation of **Java 25 Virtual Threads (Loom)** for efficient, non-blocking I/O operations.
+*   **Cloud Data Persistence:** Managing relational data with **PostgreSQL (Supabase)** and implementing robust **Spring Data JPA** repositories.
+*   **Advanced React State:** Leveraging the **Context API** and **Custom Hooks** to manage complex, multi-step reservation flows.
+*   **DevOps & Deployment:** Real-world experience in **Monorepo management**, CORS security, and cross-platform deployment (Vercel + Railway).
+*   **Responsive UX:** Designing and implementing a mobile-first UI using **Chakra UI** and **Figma** prototypes.
 
 #### Acknowledgments
 
-* Meta: For the Front-End Developer Professional Certificate program.
-
-* Coursera: Learning platform for front-end development.
-
-* Figma: For UI/UX design and prototyping.
+*   **Meta:** For the Front-End Developer Professional Certificate program and the initial project framework.
+*   **Coursera:** For providing the platform and guidance for professional development.
+*   **Spring Community:** For the cutting-edge tools in the **Spring Boot 4.0** ecosystem.
+*   **Figma:** For enabling the UI/UX design and prototyping phase.
 
 Copyright © 2025 [Yashasvi Vashistha](https://www.linkedin.com/in/yashasvi-vashistha). All rights reserved.
-No part of this repository may be copied, distributed, or used without explicit permission from the author.
+No part of this repository may be copied, distributed, or used without explicit permission from the author. While this project was inspired by the Meta Capstone, the backend implementation and deployment architecture are original works.
