@@ -103,7 +103,7 @@ export default function Booking({ availableTimes, dispatchAvailableTimes, update
                     dispatchAvailableTimes({ type: 'UPDATED_TIMES', payload: freeTimes })
                 });
         }
-    }, [formik.values.date]);
+    }, [formik.values.date, dispatchAvailableTimes]);
 
     return (
         <FullScreenSection

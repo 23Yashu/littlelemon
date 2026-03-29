@@ -3,7 +3,7 @@ import restaurant from '../img/restaurant.jpg';
 import { FaFacebook, FaInstagram, FaTwitter, FaChevronDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 function Footer() {
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile] = useState(false);
     const [openSection, setOpenSection] = useState(null);
     const date = new Date();
     const year = date.getFullYear();

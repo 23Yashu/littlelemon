@@ -74,7 +74,7 @@ function Login() {
                     formik.resetForm();
                 }
             }
-        }, [response]);
+        }, [response, onOpen, formik]);
 
         return (
             <FullScreenSection

@@ -96,7 +96,7 @@ function Payment() {
         if (response && response.type === 'error') {
             onOpen(response.type, response.message);
         }
-    }, [response]);
+    }, [response, onOpen]);
     return (
         <FullScreenSection
             isDarkBackground
