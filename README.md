@@ -67,14 +67,14 @@ cd littlelemon
 3. Backend Setup
 
 cd backend
-# Update application.properties with your Supabase credentials
+// Update application.properties with your Supabase credentials
 ./mvnw spring-boot:run
 
 4. Frontend Setup
 
 cd frontend
 npm install
-# Set REACT_APP_API_URL=http://localhost:8080 in .env
+// Set REACT_APP_API_URL=http://localhost:8080 in .env
 npm start
 
 5. Open your browser and visit [http://localhost:3000](http://localhost:3000).
