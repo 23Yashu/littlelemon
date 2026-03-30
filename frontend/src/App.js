@@ -13,8 +13,6 @@ import Alert from './components/Alert';
 import Login from './components/Login';
 import ConfirmedBooking from './components/ConfirmedBooking';
 
-const API_BASE = "https://thorough-fascination-production-6e0c.up.railway.app";
-
 export const timesReducer = (state, action) => {
     switch (action.type) {
         case 'SET_TIMES':
@@ -29,7 +27,7 @@ function BookingPage() {
 
   const fetchBackendAvailability = async (date) => {
       try {
-          const response = await fetch(`${API_BASE}/api/bookings/availability?date=${date}`);
+          const response = await fetch(`/api/bookings/availability?date=${date}`);
           const data = await response.json();
           console.log("Data received from backend: ", data);
           if (!Array.isArray(data)) {

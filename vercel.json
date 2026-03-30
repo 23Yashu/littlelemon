@@ -1,0 +1,9 @@
+{
+  "rootDirectory": "frontend",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://thorough-fascination-production-6e0c.up.railway.app"
+    }
+  ]
+}
