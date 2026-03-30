@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef } from "react";
+import API_BASE_URL from '../api/apiConfig';
 
 const useLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +18,7 @@ const useLogin = () => {
         abortControllerRef.current = new AbortController();
 
         try {
-            const res = await fetch("/api/users/register", {
+            const res = await fetch(`${API_BASE_URL}/api/users/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 signal: abortControllerRef.current.signal,

@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import eyeIcon from '../icons/eye-icon.svg';
+import API_BASE_URL from '../api/apiConfig';
 
 function Login() {
         const {isLoading, response} = useLogin();
@@ -31,7 +32,7 @@ function Login() {
             },
             onSubmit: async (values) => {
                 try {
-                    const response = await fetch("/api/users/register", {
+                    const response = await fetch(`${API_BASE_URL}/api/users/register`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({

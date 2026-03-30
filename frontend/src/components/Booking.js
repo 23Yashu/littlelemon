@@ -27,6 +27,7 @@ import * as Yup from 'yup';
 import restaurant from '../img/restaurant.jpg';
 import restaurantChef from '../img/restaurantchefB.jpg';
 import FullScreenSection from './FullScreenSection';
+import API_BASE_URL from '../api/apiConfig';
 
 export default function Booking({ availableTimes, dispatchAvailableTimes, updateTimes }) {
     const { isLoading } = useSubmit();
@@ -51,7 +52,7 @@ export default function Booking({ availableTimes, dispatchAvailableTimes, update
         },
         onSubmit: async (values) => {
             try {
-                const respone = await fetch("/api/bookings", {
+                const respone = await fetch(`${API_BASE_URL}/api/bookings`, {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({
@@ -96,7 +97,7 @@ export default function Booking({ availableTimes, dispatchAvailableTimes, update
 
     useEffect(() => {
         if (formik.values.date) {
-            fetch(`/api/bookings/availability?date=${formik.values.date}`)
+            fetch(`${API_BASE_URL}/api/bookings/availability?date=${formik.values.date}`)
                 .then(res => res.json())
                 .then(data => {
                     const freeTimes = data.filter(slot => slot.isAvailable).map(slot => slot.time);

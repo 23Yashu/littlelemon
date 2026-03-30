@@ -24,6 +24,7 @@ import {
 import * as Yup from 'yup';
 import { FaChevronDown } from 'react-icons/fa';
 import creditcard from '../icons/creditcard.svg';
+import API_BASE_URL from '../api/apiConfig';
 
 function BookingSummary({ date, time, numberOfDiners }) {
     const navigate = useNavigate();
@@ -71,7 +72,7 @@ function Payment() {
                 return;
             }
             console.log("Sending to backend ID:", finalBookingId);
-            const response = await fetch("/api/payments/confirm", {
+            const response = await fetch(`${API_BASE_URL}/api/payments/confirm`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

@@ -12,6 +12,7 @@ import Payment from './components/Payment';
 import Alert from './components/Alert';
 import Login from './components/Login';
 import ConfirmedBooking from './components/ConfirmedBooking';
+import API_BASE_URL from './api/apiConfig';
 
 export const timesReducer = (state, action) => {
     switch (action.type) {
@@ -27,7 +28,7 @@ function BookingPage() {
 
   const fetchBackendAvailability = async (date) => {
       try {
-          const response = await fetch(`/api/bookings/availability?date=${date}`);
+          const response = await fetch(`${API_BASE_URL}/api/bookings/availability?date=${date}`);
           const data = await response.json();
           console.log("Data received from backend: ", data);
           if (!Array.isArray(data)) {
