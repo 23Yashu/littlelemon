@@ -23,7 +23,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/register", "/api/bookings/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }
